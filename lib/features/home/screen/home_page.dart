@@ -1,11 +1,11 @@
 
-import 'package:blood_point/features/auth/screen/LoginPage.dart';
-import 'package:blood_point/features/grouList/GroupController/groupController.dart';
-import 'package:blood_point/features/home/screen/listPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../auth/screen/LoginPage.dart';
+import '../../grouList/GroupController/groupController.dart';
 import 'add People.dart';
+import 'listPage.dart';
 var width;
 class Home extends ConsumerStatefulWidget {
   const Home({super.key});
@@ -34,7 +34,7 @@ class _HomeState extends ConsumerState<Home> {
                         IconButton(onPressed:
                             () {
                         Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage(),));
-                        }, icon:const Icon(Icons.logout_outlined))
+                        }, icon:const Icon(Icons.login_outlined))
                       ],
                       bottom:  TabBar(tabs:
                         data.groups!.map((e) => Tab(text: e,)).toList(),

@@ -1,8 +1,9 @@
-import 'package:blood_point/features/auth/authController/authController.dart';
-import 'package:blood_point/model/userModel.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/global/global.dart';
+import '../../../model/userModel.dart';
+import '../authController/authController.dart';
 import 'LoginPage.dart';
 
 class SignPage extends ConsumerStatefulWidget {

@@ -1,6 +1,8 @@
-import 'package:blood_point/features/grouList/grouprRepository/groupRepository.dart';
-import 'package:blood_point/model/groupModel.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../model/groupModel.dart';
+import '../grouprRepository/groupRepository.dart';
 final GroupControllerProvider =NotifierProvider<GroupController,bool>(() {
   return GroupController();
 } );

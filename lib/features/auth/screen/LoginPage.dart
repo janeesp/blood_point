@@ -1,10 +1,11 @@
-import 'package:blood_point/core/providers/providers.dart';
-import 'package:blood_point/features/auth/authController/authController.dart';
-import 'package:blood_point/features/auth/screen/sign_page.dart';
+
+import 'package:arabic_font/arabic_font.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:your_project_name/features/auth/screen/sign_page.dart';
 
 import '../../../core/global/global.dart';
+import '../authController/authController.dart';
 
 
 
@@ -26,43 +27,40 @@ class _LogonPaheState extends ConsumerState<LoginPage> {
   TextEditingController email=TextEditingController();
   TextEditingController password=TextEditingController();
   bool eye=false;
+  final passwordprovider = StateProvider<bool>((ref) {
+    return false;
+  });
   @override
   Widget build(BuildContext context) {
    var width= MediaQuery.of(context).size.width;
     return Scaffold(
      body: SingleChildScrollView(
-       child: Column(
-         children: [
-           SizedBox(
-             height: width*0.2,
-           ),
-           Container(
-             height: width*0.4,
-             width: width*0.4,
-             decoration:const BoxDecoration(
-                 // image: DecorationImage(image: AssetImage('assets/animation/image.webp'))
-             ) ,
-           ),
-           SizedBox(
-             height: width*0.1,
-           ),
-
-           Padding(
-             padding: const EdgeInsets.all(8.0),
-             child: Container(
-               height: width*0.13,
-               decoration: BoxDecoration(
-                   color: Colors.black12,
-                   borderRadius: BorderRadius.circular(10)
+       child: Padding(
+         padding: const EdgeInsets.all(10),
+         child: Consumer(builder: (context, ref, child) {
+           final passwordvisble = ref.watch(passwordprovider);
+           return  Column(
+             children: [
+               SizedBox(
+                 height: width*0.5,
                ),
-               child: TextFormField(
+               Text('Login',style: ArabicTextStyle(arabicFont: ArabicFont.amiri,fontSize: 50),),
+               SizedBox(
+                 height: width*0.1,
+               ),
+
+               TextFormField(
                  controller: email,
                  decoration: const InputDecoration(
+                     border: OutlineInputBorder(
+                       borderRadius: BorderRadius.all(
+                         Radius.circular(10)
+                       )
+                     ),
                      prefixIconColor: Colors.black12,
-                     contentPadding: EdgeInsets.all(10),
+                     contentPadding: const EdgeInsets.only(top: 30,left: 10),
                      // prefixIcon: Icon(Icons.person),
-                     hintText: "email: ",
-                     border: InputBorder.none
+                     hintText: "email: "
                  ),
                  autovalidateMode: AutovalidateMode.onUserInteraction,
                  validator: (value) {
@@ -73,38 +71,31 @@ class _LogonPaheState extends ConsumerState<LoginPage> {
                    }
                  },
                ),
-             ),
-           ),
-           SizedBox(
-             height: width*0.06,
-           ),
-           Padding(
-             padding: const EdgeInsets.all(8.0),
-             child: Container(
-               height: width*0.13,
-               decoration: BoxDecoration(
-                   color: Colors.black12,
-                   borderRadius: BorderRadius.circular(10)
+               SizedBox(
+                 height: width*0.06,
                ),
-               child: TextFormField(
+               TextFormField(
                  controller: password,
                  maxLength: 15,
-                 obscureText: eye==true?false:true,
+                 obscureText:!passwordvisble,
                  decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.only(top: 30,left: 10),
+                     contentPadding: const EdgeInsets.only(top: 30,left: 10),
                      prefixIconColor: Colors.black12,
                      // prefixIcon: const Icon(Icons.lock_outline_rounded),
                      hintText: "password",
-                     suffixIcon: InkWell(
+                     suffixIcon: GestureDetector(
                          onTap: () {
-                           eye=!eye;
-                           setState(() {
-
-                           });
+                          ref.watch(passwordprovider.notifier).state= !passwordvisble;
                          },
-                         child:eye==true? const Icon(Icons.remove_red_eye_outlined,color: Colors.black12,)
-                             :const Icon(Icons.visibility_off,color: Colors.black12,)),
-                     border: InputBorder.none
+                         child:!passwordvisble?
+           Icon(Icons.visibility_off):
+                             Icon(Icons.visibility),
+           ),
+                     border: OutlineInputBorder(
+                       borderRadius: BorderRadius.all(
+                         Radius.circular(10)
+                       )
+                     )
                  ),
                  autovalidateMode:AutovalidateMode.onUserInteraction,
                  // validator: (value) {
@@ -115,99 +106,116 @@ class _LogonPaheState extends ConsumerState<LoginPage> {
                  //   }
                  // },
                ),
-             ),
-           ),
-           SizedBox(
-             height: width*0.08,
-           ),
-
-
-           Container(
-             height: width*0.13,
-             width: width*0.9,
-             decoration: BoxDecoration(
-                 color: primaryColor,
-                 borderRadius: BorderRadius.circular(15)
-             ),
-             child: InkWell(
-               onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const SignPage(),));
-               },
-               child: const Center(child: Text("Sign up",style: TextStyle(
-                   fontWeight: FontWeight.bold,fontSize: 20,color: Colors.white),)),
-             ),
-           ),
-           SizedBox(
-             height: width*0.07,
-           ),
-           InkWell(
-             onTap: () {
-               if(email.text.trim().isNotEmpty&&password.text.trim().isNotEmpty){
-             LoginData();
-
-               }else{
-
-                 email.text.isEmpty?
-                 showErorMessage(context,'enter email'):
-                 showErorMessage(context,'enter password');
-               }
-             },
-             child: Container(
-               height: width*0.13,
-               width: width*0.9,
-               decoration: BoxDecoration(
-                   color: primaryColor,
-                   borderRadius: BorderRadius.circular(15)
-               ),
-               child: const Center(child: Text("Login",style: TextStyle(
-                   fontWeight: FontWeight.bold,fontSize: 20,color: Colors.white),)),
-             ),
-           ),
-           SizedBox(height: width*0.02,),
-           Row(
-             children: [
-               SizedBox(width: width*0.09,),
-               const Text('Forgot password',style: TextStyle(fontWeight: FontWeight.bold),),
-               SizedBox(width: width*0.35,),
-               const Text('Creat an account',style: TextStyle(fontWeight: FontWeight.bold))
-             ],
-           ),
-           SizedBox(height: width*0.1,),
-           const Text('or',style:TextStyle(color: Colors.black38,fontSize: 25),),
-           SizedBox(
-             height: width*0.1,
-           ),
-           Row(
-             children: [
-               SizedBox(width: width*0.04,),
-               Container(
-                 height: width*0.14,
-                 width: width*0.4,
-                 decoration: const BoxDecoration(
-                     // image: DecorationImage(image: AssetImage('assets/animation/insta.png')),
-                     shape: BoxShape.circle
-
-                 ),
+               Row(
+                 mainAxisAlignment: MainAxisAlignment.end,
+                 children: [
+                   // SizedBox(width: width*0.09,),
+                   // //const Text('Forgot password',style: TextStyle(fontWeight: FontWeight.bold),),
+                   // SizedBox(width: width*0.35,),
+                   const Text('Forgot password',style: TextStyle(fontWeight: FontWeight.bold))
+                 ],
                ),
                SizedBox(
-                 width: width*0.17,
+                 height: width*0.08,
                ),
 
-               Container(
-                   height: width*0.18,
-                   width: width*0.15,
-                   decoration: const BoxDecoration(
-                       shape: BoxShape.circle
+               InkWell(
+                 onTap: () {
+                   if(email.text.trim().isNotEmpty&&password.text.trim().isNotEmpty){
+                     LoginData();
+
+                   }else{
+
+                     email.text.isEmpty?
+                     showErorMessage(context,'enter email'):
+                     showErorMessage(context,'enter password');
+                   }
+                 },
+                 child: Container(
+                   height: width*0.13,
+                  // width: width*0.9,
+                   decoration: BoxDecoration(
+                       color: primaryColor,
+                       borderRadius: BorderRadius.circular(15)
                    ),
+                   child: const Center(child: Text("Login",style: TextStyle(
+                       fontWeight: FontWeight.bold,fontSize: 20,color: Colors.white),)),
+                 ),
 
-                   // child:
-                   // SignInButton()
-               )
-
-
+               ),
+               SizedBox(
+                 height: 5,
+               ),
+               GestureDetector(
+                 onTap: (){
+                   Navigator.push(context, MaterialPageRoute(builder: (context) => const SignPage(),));
+                 },
+                 child: const Padding(
+                   padding: EdgeInsets.all(8.0),
+                   child: Row(
+                     mainAxisAlignment: MainAxisAlignment.center,
+                     children: [
+                       Text("Don't hve a account ? ",style: ArabicTextStyle(arabicFont:ArabicFont.amiri,
+                       fontSize: 15),),
+                       Text('SIGHN Up',style: ArabicTextStyle(arabicFont: ArabicFont.lalezar,fontSize: 15),)
+                     ],
+                   ),
+                 ),
+               ),
+               // Container(
+               //   height: width*0.13,
+               //   width: width*0.9,
+               //   decoration: BoxDecoration(
+               //       color: primaryColor,
+               //       borderRadius: BorderRadius.circular(15)
+               //   ),
+               //   child: InkWell(
+               //     onTap: () {
+               //     },
+               //     child: const Center(child: Text("Sign up",style: TextStyle(
+               //         fontWeight: FontWeight.bold,fontSize: 20,color: Colors.white),)),
+               //   ),
+               // ),
+               // SizedBox(height: width*0.02,),
+               // SizedBox(height: width*0.1,),
+               // const Text('or',style:TextStyle(color: Colors.black38,fontSize: 25),),
+               // SizedBox(
+               //   height: width*0.1,
+               // ),
+               // Row(
+               //   children: [
+               //     SizedBox(width: width*0.04,),
+               //     Container(
+               //       height: width*0.14,
+               //       width: width*0.4,
+               //       decoration: const BoxDecoration(
+               //         // image: DecorationImage(image: AssetImage('assets/animation/insta.png')),
+               //           shape: BoxShape.circle
+               //
+               //       ),
+               //     ),
+               //     SizedBox(
+               //       width: width*0.17,
+               //     ),
+               //
+               //     Container(
+               //       height: width*0.18,
+               //       width: width*0.15,
+               //       decoration: const BoxDecoration(
+               //           shape: BoxShape.circle
+               //       ),
+               //
+               //       // child:
+               //       // SignInButton()
+               //     )
+               //
+               //
+               //   ],
+               // ),
              ],
-           ),
-         ],
+           );
+         },)
+
        ),
      ),
     );

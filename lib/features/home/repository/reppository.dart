@@ -1,9 +1,11 @@
-import 'package:blood_point/core/const/constants.dart';
-import 'package:blood_point/core/providers/providers.dart';
-import 'package:blood_point/features/home/screen/add%20People.dart';
-import 'package:blood_point/model/detailsModel.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../core/const/constants.dart';
+import '../../../core/providers/providers.dart';
+import '../../../model/detailsModel.dart';
+import '../screen/add People.dart';
 final addReppositoryProvider =Provider((ref) => addReppository(firestore: ref.read(firebaseProvider)));
 class addReppository{
 final FirebaseFirestore _firestore;

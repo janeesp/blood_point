@@ -1,11 +1,11 @@
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
-import 'package:blood_point/features/grouList/GroupController/groupController.dart';
-import 'package:blood_point/features/home/screen/home_page.dart';
-import 'package:blood_point/model/detailsModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/global/global.dart';
+import '../../../model/detailsModel.dart';
+import '../../grouList/GroupController/groupController.dart';
 import '../controller/addController.dart';
+import 'home_page.dart';
 
 
 class AddPage extends ConsumerStatefulWidget {

@@ -1,6 +1,4 @@
 
-import 'package:blood_point/features/home/screen/home_page.dart';
-import 'package:blood_point/features/home/screen/listPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';

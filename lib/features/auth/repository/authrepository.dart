@@ -1,14 +1,16 @@
-import 'package:blood_point/core/const/constants.dart';
-import 'package:blood_point/core/providers/Faillure.dart';
-import 'package:blood_point/core/providers/Typedufe.dart';
-import 'package:blood_point/core/providers/providers.dart';
-import 'package:blood_point/main.dart';
-import 'package:blood_point/model/userModel.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../core/const/constants.dart';
+import '../../../core/providers/Faillure.dart';
+import '../../../core/providers/Typedufe.dart';
+import '../../../core/providers/providers.dart';
+import '../../../main.dart';
+import '../../../model/userModel.dart';
 
 final AuthRepositoryProvider = Provider((ref) => AuthRepository(
     firestore: ref.watch(firebaseProvider), auth: ref.watch(authProvider)));

@@ -1,8 +1,9 @@
 
-import 'package:blood_point/core/providers/providers.dart';
-import 'package:blood_point/model/detailsModel.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/providers/providers.dart';
+import '../../../model/detailsModel.dart';
 import '../repository/reppository.dart';
 final addControllerProvider =Provider((ref) => addController(reppository: ref.read(addReppositoryProvider)));
 final getDetailsControllerProvider =StreamProvider.family.autoDispose((ref,String? group){

@@ -1,12 +1,13 @@
-import 'package:blood_point/features/auth/repository/authrepository.dart';
-import 'package:blood_point/model/userModel.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/providers/utils.dart';
+import '../../../model/userModel.dart';
 import '../../home/screen/home_page.dart';
+import '../repository/authrepository.dart';
 final AuthControllerProvider = Provider((ref){
   return AuthController(repository: ref.watch(AuthRepositoryProvider));
 });

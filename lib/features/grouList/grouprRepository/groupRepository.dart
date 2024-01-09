@@ -1,8 +1,10 @@
-import 'package:blood_point/core/const/constants.dart';
-import 'package:blood_point/core/providers/providers.dart';
-import 'package:blood_point/model/groupModel.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../core/const/constants.dart';
+import '../../../core/providers/providers.dart';
+import '../../../model/groupModel.dart';
 final GroupRepositoryProvider = Provider((ref) => BloodListRepository(firestore: ref.read(firebaseProvider)));
 class BloodListRepository{
 FirebaseFirestore _firestore;
