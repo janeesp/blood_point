@@ -30,4 +30,7 @@ LoginData(String email , password,BuildContext context)async{
      Navigator.push(context, MaterialPageRoute(builder:(context) => Home(), ));
          });
 }
+SignwithGoole(BuildContext context)async{
+  _repository.GogoleSigIn(context);
+}
 }

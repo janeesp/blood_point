@@ -34,6 +34,7 @@ dependencies:
   fpdart:
   arabic_font: ^0.0.9
   shared_preferences: ^2.2.2
+  google_sign_in:
 
 dev_dependencies:
   flutter_test:

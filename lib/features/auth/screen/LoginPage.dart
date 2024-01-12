@@ -2,6 +2,9 @@
 import 'package:arabic_font/arabic_font.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:your_project_name/core/providers/providers.dart';
+import 'package:your_project_name/core/providers/utils.dart';
+import 'package:your_project_name/features/auth/repository/authrepository.dart';
 import 'package:your_project_name/features/auth/screen/sign_page.dart';
 
 import '../../../core/global/global.dart';
@@ -32,7 +35,8 @@ class _LogonPaheState extends ConsumerState<LoginPage> {
   });
   @override
   Widget build(BuildContext context) {
-   var width= MediaQuery.of(context).size.width;
+  scrHeight = MediaQuery.of(context).size.height;
+  scrWidth = MediaQuery.of(context).size.width;
     return Scaffold(
      body: SingleChildScrollView(
        child: Padding(
@@ -42,11 +46,11 @@ class _LogonPaheState extends ConsumerState<LoginPage> {
            return  Column(
              children: [
                SizedBox(
-                 height: width*0.5,
+                 height: scrHeight*0.2,
                ),
                Text('Login',style: ArabicTextStyle(arabicFont: ArabicFont.amiri,fontSize: 50),),
                SizedBox(
-                 height: width*0.1,
+                 height: scrHeight*0.05,
                ),
 
                TextFormField(
@@ -72,7 +76,7 @@ class _LogonPaheState extends ConsumerState<LoginPage> {
                  },
                ),
                SizedBox(
-                 height: width*0.06,
+                 height: scrHeight*0.03,
                ),
                TextFormField(
                  controller: password,
@@ -116,7 +120,7 @@ class _LogonPaheState extends ConsumerState<LoginPage> {
                  ],
                ),
                SizedBox(
-                 height: width*0.08,
+                 height: scrHeight*0.08,
                ),
 
                InkWell(
@@ -132,7 +136,7 @@ class _LogonPaheState extends ConsumerState<LoginPage> {
                    }
                  },
                  child: Container(
-                   height: width*0.13,
+                   height: scrHeight*0.07,
                   // width: width*0.9,
                    decoration: BoxDecoration(
                        color: primaryColor,
@@ -162,6 +166,12 @@ class _LogonPaheState extends ConsumerState<LoginPage> {
                    ),
                  ),
                ),
+               GestureDetector(
+                   onTap: (){
+                     ref.watch(AuthControllerProvider).SignwithGoole(context);
+                    // ref.read(AuthControllerProvider).SignwithGoole(context);
+                   },
+                   child: Text('Google Sign'))
                // Container(
                //   height: width*0.13,
                //   width: width*0.9,
