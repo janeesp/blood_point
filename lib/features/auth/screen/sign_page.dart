@@ -16,6 +16,7 @@ class SignPage extends ConsumerStatefulWidget {
 class _SignPageState extends ConsumerState<SignPage> {
   SignData(){
     ref.watch(AuthControllerProvider).Sign(UserModel(
+        delete: false,
         email: email_controler.text.trim(),
         password: password_controler.text.trim(),
         name: Name.text.trim(),
@@ -113,10 +114,10 @@ class _SignPageState extends ConsumerState<SignPage> {
 
                 child: TextFormField(
                   controller: password_controler,
-                  maxLength: 10,
+                   maxLength: 10,
 
                   obscureText: eye==true?false:true,
-                  decoration: InputDecoration(contentPadding: const EdgeInsets.only(left: 20,top: 40),
+                  decoration: InputDecoration(contentPadding: const EdgeInsets.only(left: 20,top: 30),
                     // prefixIcon: Icon(Icons.lock_outline_rounded),
                     prefixIconColor: Colors.black12,
                     border:  InputBorder.none,
@@ -154,7 +155,8 @@ class _SignPageState extends ConsumerState<SignPage> {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage(),));
                     SignData();
                   }else{
-
+                    Name.text==''?
+                        showErorMessage(context,'enter name'):
                     email_controler.text==""?
                     showErorMessage(context,'enter email') :
                     showErorMessage(context,'enter password');

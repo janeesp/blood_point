@@ -17,8 +17,9 @@ AuthController({
   required AuthRepository repository
 }):
     _repository=repository;
-Sign(UserModel emailAuth){
-  _repository.addSignUp(emailAuth);
+
+Sign(UserModel userModel){
+  _repository.addSignUp(userModel);
 }
 LoginData(String email , password,BuildContext context)async{
  var result = await _repository.LoginData(email, password);

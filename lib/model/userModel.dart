@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-
+UserModel? currentUser;
 class UserModel {
   String? email;
   String? password;

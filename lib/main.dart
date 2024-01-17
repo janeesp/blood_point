@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'features/auth/screen/LoginPage.dart';
+import 'features/auth/screen/splashScreen.dart';
 import 'firebase_options.dart';
 
-var currentUserId = FirebaseAuth.instance.currentUser?.uid;
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform,
@@ -27,9 +27,9 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return  const MaterialApp(
        // home: Home(),
-         home: LoginPage(),
+         home: Splashscreen(),
       debugShowCheckedModeBanner: false,
     );
   }

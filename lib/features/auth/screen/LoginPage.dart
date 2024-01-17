@@ -1,13 +1,11 @@
 
 import 'package:arabic_font/arabic_font.dart';
+import 'package:blood_point/features/auth/screen/sign_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:your_project_name/core/providers/providers.dart';
-import 'package:your_project_name/core/providers/utils.dart';
-import 'package:your_project_name/features/auth/repository/authrepository.dart';
-import 'package:your_project_name/features/auth/screen/sign_page.dart';
 
 import '../../../core/global/global.dart';
+import '../../../core/providers/utils.dart';
 import '../authController/authController.dart';
 
 
@@ -154,7 +152,7 @@ class _LogonPaheState extends ConsumerState<LoginPage> {
                  onTap: (){
                    Navigator.push(context, MaterialPageRoute(builder: (context) => const SignPage(),));
                  },
-                 child: const Padding(
+                 child:  Padding(
                    padding: EdgeInsets.all(8.0),
                    child: Row(
                      mainAxisAlignment: MainAxisAlignment.center,

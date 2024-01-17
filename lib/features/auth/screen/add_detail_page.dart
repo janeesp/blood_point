@@ -1,9 +1,9 @@
 import 'package:arabic_font/arabic_font.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:your_project_name/core/global/global.dart';
-import 'package:your_project_name/features/home/screen/home_page.dart';
 
+
+import '../../../core/global/global.dart';
 import '../../../core/providers/utils.dart';
 
 class Add_detail_Page extends ConsumerStatefulWidget {
@@ -26,7 +26,7 @@ class _Add_detail_PageState extends ConsumerState<Add_detail_Page> {
                 SizedBox(
                   height:scrHeight*0.05,
                 ),
-                 const Padding(
+                  Padding(
                    padding: EdgeInsets.all(8.0),
                    child:  Row(
                      mainAxisAlignment: MainAxisAlignment.center,
