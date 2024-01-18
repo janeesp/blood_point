@@ -1,11 +1,16 @@
 
+
+
 import 'package:arabic_font/arabic_font.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+
 import '../../../model/detailsModel.dart';
 import '../controller/addController.dart';
 import 'home_page.dart';
+
+
 
 class AllItems extends ConsumerStatefulWidget {
   String group;
@@ -27,6 +32,14 @@ class _AllItemsState extends ConsumerState<AllItems> {
             var  detailItems = ref.watch(getDetailsControllerProvider(widget.group));
             return
             detailItems.when(data: (data) {
+              data.isEmpty?
+              Container(
+                height: 100,
+                child: Center(child:Container(
+                  height: 100,
+                  color: Colors.red,
+                )),
+              ):
               print(detailItems);
               return ListView.builder(
                 physics: BouncingScrollPhysics(),
@@ -35,7 +48,8 @@ class _AllItemsState extends ConsumerState<AllItems> {
                 scrollDirection: Axis.vertical,
                 itemBuilder: (context, index) {
                   DetailsModel detailItems = data[index];
-                  return  Padding(
+                  return
+                    Padding(
                     padding:  EdgeInsets.all(width*0.03),
                     child: Container(
                      // margin: EdgeInsets.only(top: 3,left: 2),

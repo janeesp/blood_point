@@ -1,7 +1,5 @@
 import 'dart:async';
 
-import 'package:blood_point/features/home/screen/home_page.dart';
-import 'package:blood_point/main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../model/userModel.dart';
+import '../../home/screen/home_page.dart';
 import 'LoginPage.dart';
 var currentUserId=FirebaseAuth.instance.currentUser?.uid;
  String currentuserId="";

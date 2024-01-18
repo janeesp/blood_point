@@ -1,6 +1,7 @@
 
 import 'package:arabic_font/arabic_font.dart';
 import 'package:blood_point/features/auth/screen/sign_page.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -150,7 +151,7 @@ class _LogonPaheState extends ConsumerState<LoginPage> {
                ),
                GestureDetector(
                  onTap: (){
-                   Navigator.push(context, MaterialPageRoute(builder: (context) => const SignPage(),));
+                   Navigator.push(context, MaterialPageRoute(builder: (context) =>  SignPage(),));
                  },
                  child:  Padding(
                    padding: EdgeInsets.all(8.0),
