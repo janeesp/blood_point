@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../auth/screen/LoginPage.dart';
 import '../../grouList/GroupController/groupController.dart';
 import 'add People.dart';
@@ -28,12 +29,15 @@ class _HomeState extends ConsumerState<Home> {
                 return  DefaultTabController(
                   length: data.groups!.length,
                   child: Scaffold(
-
                     appBar: AppBar(
                       actions: [
                         IconButton(onPressed:
-                            () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage(),));
+                            ()async {
+                          final SharedPreferences localStorage=
+                          await SharedPreferences.getInstance();
+                          localStorage.clear();
+                        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => LoginPage(),),
+                                (route) => false);
                         }, icon:const Icon(Icons.login_outlined))
                       ],
                       bottom:  TabBar(tabs:
@@ -54,6 +58,7 @@ class _HomeState extends ConsumerState<Home> {
                           return AllItems(group: data.groups![index]);
                         })
                     ),
+
                     floatingActionButton:FloatingActionButton(
                       onPressed: () {
                         Navigator.push(context, MaterialPageRoute(builder: (context) => const AddPage(),)) ;
