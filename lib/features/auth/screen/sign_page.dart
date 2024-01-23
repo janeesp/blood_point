@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/global/global.dart';
 import '../../../model/userModel.dart';
+import '../../home/screen/home_page.dart';
 import '../authController/authController.dart';
 import 'LoginPage.dart';
 
@@ -21,7 +22,7 @@ class _SignPageState extends ConsumerState<SignPage> {
         email: email_controler.text.trim(),
         password: password_controler.text.trim(),
         name: Name.text.trim(),
-        id: ""));
+        id: "",));
   }
 
   RegExp Emailvalidator =
@@ -142,7 +143,7 @@ class _SignPageState extends ConsumerState<SignPage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const LoginPage(),
+                          builder: (context) => const Home(),
                         ));
                     SignData();
                   } else {

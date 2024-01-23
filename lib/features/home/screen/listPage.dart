@@ -1,6 +1,7 @@
 import 'package:arabic_font/arabic_font.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../model/detailsModel.dart';
 import '../controller/addController.dart';
@@ -66,7 +67,7 @@ class _AllItemsState extends ConsumerState<AllItems> {
                                     children: [
                                       Row(
                                         children: [
-                                          Text(
+                                          const Text(
                                             'Name            :  ',
                                             style: ArabicTextStyle(
                                                 arabicFont: ArabicFont.amiri),
@@ -84,15 +85,24 @@ class _AllItemsState extends ConsumerState<AllItems> {
                                       ),
                                       Row(
                                         children: [
-                                          Text(
+                                          const Text(
                                             'phone            :  ',
                                             style: ArabicTextStyle(
                                                 arabicFont: ArabicFont.amiri),
                                           ),
-                                          Text(
-                                            detailItems.number.toString(),
-                                            style: ArabicTextStyle(
-                                                arabicFont: ArabicFont.amiri),
+                                          GestureDetector(
+                                   onTap: () {
+                                     void _launchURL() async {
+                                       if (!await launch('tel://${detailItems.number.toString()}')) throw 'Could not launch ';
+                                     }
+                                     _launchURL();
+                                   },
+                                            child: Text(
+                                              detailItems.number.toString(),
+                                              style: const ArabicTextStyle(
+                                                  arabicFont: ArabicFont.amiri,color: Colors.blue),
+
+                                            ),
                                           ),
                                         ],
                                       ),
@@ -101,7 +111,7 @@ class _AllItemsState extends ConsumerState<AllItems> {
                                       ),
                                       Row(
                                         children: [
-                                          Text(
+                                          const Text(
                                             'Age               :  ',
                                             style: ArabicTextStyle(
                                                 arabicFont: ArabicFont.amiri),
@@ -118,7 +128,7 @@ class _AllItemsState extends ConsumerState<AllItems> {
                                       ),
                                       Row(
                                         children: [
-                                          Text(
+                                          const Text(
                                             'Bloudgroup    :  ',
                                             style: ArabicTextStyle(
                                                 arabicFont: ArabicFont.amiri),
