@@ -46,6 +46,11 @@ class _LogonPaheState extends ConsumerState<LoginPage> {
                 final passwordvisble = ref.watch(passwordprovider);
                 return Column(
                   children: [
+                    Container(
+                      height: 100,
+                      child:Image.asset('aseets/Logo.jpg') ,
+                    ),
+                    
                     Text(
                       'Login',
                       style: ArabicTextStyle(
