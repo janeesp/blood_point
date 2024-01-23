@@ -1,5 +1,7 @@
 import 'package:arabic_font/arabic_font.dart';
+import 'package:blood_point/core/providers/providers.dart';
 import 'package:blood_point/core/providers/utils.dart';
+import 'package:blood_point/features/auth/repository/authrepository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/global/global.dart';
@@ -46,7 +48,7 @@ class _SignPageState extends ConsumerState<SignPage> {
                 height: scrHeight * 0.03,
               ),
               Text(
-                'Sign In',
+                'Sign Up',
                 style:
                     ArabicTextStyle(arabicFont: ArabicFont.amiri, fontSize: 50),
               ),
@@ -133,7 +135,15 @@ class _SignPageState extends ConsumerState<SignPage> {
                 height: width * 0.3,
               ),
               InkWell(
-                onTap: () {
+                onTap: () async {
+                  final emailexist = await ref
+                      .watch(AuthRepositoryProvider)
+                      .emailexist(email: email_controler.text.trim());
+                  if (emailexist) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('email alredy exist')));
+                  }
+
                   if (Name.text.trim().isNotEmpty &&
                       email_controler.text.trim() != "" &&
                       password_controler.text.trim() != "") {

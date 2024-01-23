@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -25,12 +24,12 @@ class AuthRepository {
   FirebaseAuth _auth;
   FirebaseFirestore _firestore;
   final GoogleSignIn _googleSinIn;
-  AuthRepository( {
+  AuthRepository({
     required FirebaseFirestore firestore,
     required FirebaseAuth auth,
     required GoogleSignIn googleSignIn,
   })  : _auth = auth,
-  _googleSinIn = googleSignIn,
+        _googleSinIn = googleSignIn,
         _firestore = firestore;
 
   addSignUp(UserModel emailAuth) {
@@ -42,7 +41,7 @@ class AuthRepository {
     )
         .then((value) {
       addEmail = UserModel(
-        delete: false,
+          delete: false,
           name: emailAuth.name!.trim(),
           email: emailAuth.email!.trim(),
           password: emailAuth.password!.trim(),
@@ -76,57 +75,73 @@ class AuthRepository {
       // await _auth.signInWithEmailAndPassword(email: email, password: password);
 
       return right(userModel!);
-    } on FirebaseException catch(e){
-  throw e.message!;
-    }catch (e){
+    } on FirebaseException catch (e) {
+      throw e.message!;
+    } catch (e) {
       return left(Failure(e.toString()));
     }
   }
-  GogoleSigIn(BuildContext context)async{
-    try{
-    UserCredential userCredential;
-    final GoogleSignInAccount? googleuser = await _googleSinIn.signIn();
-    if(googleuser != null){
-      print('111111111');
-   final googleauth = await googleuser.authentication;
-   final credential = GoogleAuthProvider.credential(
-     accessToken: googleauth?.accessToken,
-     idToken:  googleauth?.idToken,
-   );
-  userCredential = await _auth.signInWithCredential(credential);
- final email = userCredential.user!.email;
- print('2222222');
-  final usersnapshoot= await _user.where('email',isEqualTo: email).get();
 
-  UserModel? userModel;
-  if(usersnapshoot.docs.isNotEmpty){
-    print('3333333');
-    userModel =UserModel.fromjson(
-      usersnapshoot.docs[0].data() as Map<String,dynamic>,
-    );
-  }else{
-    print('44444444');
-   userModel= UserModel(
-     //createrddate: DateTime.now(),
-     delete: false,
-     email: userCredential.user!.email,
-     id:userCredential.user!.uid,
-   );
-   print('55555555');
-   await _user.doc(userCredential.user!.uid).set(userModel.tojson());
-  }
-  print('6666666666');
- Navigator.push(context,MaterialPageRoute(builder: (context) => Add_detail_Page(
-   name: userCredential.user!.displayName,
-   email: userCredential.user!.email,
- ),));
-    }
-    }catch(e){
+  GogoleSigIn(BuildContext context) async {
+    try {
+      UserCredential userCredential;
+      final GoogleSignInAccount? googleuser = await _googleSinIn.signIn();
+      if (googleuser != null) {
+        print('111111111');
+        final googleauth = await googleuser.authentication;
+        final credential = GoogleAuthProvider.credential(
+          accessToken: googleauth?.accessToken,
+          idToken: googleauth?.idToken,
+        );
+        userCredential = await _auth.signInWithCredential(credential);
+        final email = userCredential.user!.email;
+        print('2222222');
+        final usersnapshoot =
+            await _user.where('email', isEqualTo: email).get();
+
+        UserModel? userModel;
+        if (usersnapshoot.docs.isNotEmpty) {
+          print('3333333');
+          userModel = UserModel.fromjson(
+            usersnapshoot.docs[0].data() as Map<String, dynamic>,
+          );
+        } else {
+          print('44444444');
+          userModel = UserModel(
+            //createrddate: DateTime.now(),
+            delete: false,
+            email: userCredential.user!.email,
+            id: userCredential.user!.uid,
+          );
+          print('55555555');
+          await _user.doc(userCredential.user!.uid).set(userModel.tojson());
+        }
+        print('6666666666');
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Add_detail_Page(
+                name: userCredential.user!.displayName,
+                email: userCredential.user!.email,
+              ),
+            ));
+      }
+    } catch (e) {
       print('777777');
       print('eror sign in $e');
     }
   }
-  CollectionReference get _user{
- return FirebaseFirestore.instance.collection('user');
+
+  CollectionReference get _user {
+    return FirebaseFirestore.instance.collection('user');
+  }
+
+  Future<bool> emailexist({required String email}) async {
+    final emailexist = await _firestore
+        .collection(FirebaseConst.Users)
+        .where('email', isEqualTo: email)
+        .where('deleted', isEqualTo: false)
+        .get();
+    return emailexist.docs.isNotEmpty;
   }
 }
