@@ -32,7 +32,7 @@ class AuthRepository {
         _googleSinIn = googleSignIn,
         _firestore = firestore;
 
-  addSignUp(UserModel emailAuth) {
+  addSignUp(UserModel emailAuth,) {
     UserModel addEmail;
     _auth
         .createUserWithEmailAndPassword(

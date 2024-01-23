@@ -155,7 +155,7 @@ class _LogonPaheState extends ConsumerState<LoginPage> {
                         )),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     GestureDetector(
@@ -170,7 +170,7 @@ class _LogonPaheState extends ConsumerState<LoginPage> {
                         padding: EdgeInsets.all(8.0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
+                          children: const [
                             Text(
                               "Don't hve a account ? ",
                               style: ArabicTextStyle(
