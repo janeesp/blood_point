@@ -116,7 +116,10 @@ class AuthRepository {
    await _user.doc(userCredential.user!.uid).set(userModel.tojson());
   }
   print('6666666666');
- Navigator.push(context,MaterialPageRoute(builder: (context) => Add_detail_Page(),));
+ Navigator.push(context,MaterialPageRoute(builder: (context) => Add_detail_Page(
+   name: userCredential.user!.displayName,
+   email: userCredential.user!.email,
+ ),));
     }
     }catch(e){
       print('777777');
