@@ -131,17 +131,17 @@ class AuthRepository {
       print('eror sign in $e');
     }
   }
-
-  CollectionReference get _user {
-    return FirebaseFirestore.instance.collection('user');
-  }
-
   Future<bool> emailexist({required String email}) async {
     final emailexist = await _firestore
         .collection(FirebaseConst.Users)
         .where('email', isEqualTo: email)
-        .where('deleted', isEqualTo: false)
+        .where('delete', isEqualTo: false)
         .get();
     return emailexist.docs.isNotEmpty;
   }
+  CollectionReference get _user {
+    return FirebaseFirestore.instance.collection('user');
+  }
+
+
 }

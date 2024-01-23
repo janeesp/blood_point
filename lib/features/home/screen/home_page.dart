@@ -2,6 +2,7 @@ import 'package:arabic_font/arabic_font.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../auth/screen/LoginPage.dart';
 import '../../grouList/GroupController/groupController.dart';
 import 'add People.dart';
@@ -38,13 +39,19 @@ class _HomeState extends ConsumerState<Home> {
                   ),
                   actions: [
                     IconButton(
-                        onPressed: () {
-
-                          Navigator.push(
+                        onPressed: () async {
+                          Navigator.of(context, rootNavigator: true).pop(false);
+                          final SharedPreferences localStorage =
+                          await SharedPreferences.getInstance();
+                          localStorage.clear();
+                          print(localStorage.get('userId'));
+                          print('localStorage.get()localStorage.get()');
+                          Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const LoginPage(),
-                              ));
+                                  builder: (context) =>
+                                   LoginPage()),
+                                  (route) => false);
                         },
                         icon: const Icon(Icons.login_outlined))
                   ],
