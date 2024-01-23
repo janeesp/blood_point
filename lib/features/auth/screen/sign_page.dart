@@ -1,3 +1,5 @@
+import 'package:arabic_font/arabic_font.dart';
+import 'package:blood_point/core/providers/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/global/global.dart';
@@ -41,12 +43,19 @@ class _SignPageState extends ConsumerState<SignPage> {
           child: Column(
             children: [
               SizedBox(
-                height: width * 0.3,
+                height: scrHeight * 0.03,
+              ),
+              Text(
+                'Sign In',
+                style:
+                    ArabicTextStyle(arabicFont: ArabicFont.amiri, fontSize: 50),
+              ),
+              SizedBox(
+                height: width * 0.02,
               ),
               Container(
-                height: width * 0.3,
-                width: width * 0.4,
-                // child: const Image(image: AssetImage('assets/animation/image.webp')),
+                height: width * 0.5,
+                child: const Image(image: AssetImage('aseets/Logo.jpg')),
               ),
               SizedBox(
                 height: width * 0.08,
@@ -59,18 +68,6 @@ class _SignPageState extends ConsumerState<SignPage> {
                     // prefixIcon: Icon(Icons.person),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10)))),
-              ),
-              SizedBox(
-                height: width * 0.04,
-              ),
-              TextFormField(
-                decoration: InputDecoration(
-                    hintText: 'Nick Name',
-                    labelText: "Nick Name",
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                      Radius.circular(10),
-                    ))),
               ),
               SizedBox(
                 height: width * 0.04,
@@ -108,7 +105,7 @@ class _SignPageState extends ConsumerState<SignPage> {
                   focusColor: Colors.black12,
                   hintText: "Password",
                   labelText: 'Password',
-                  suffixIcon: InkWell(
+                  suffixIcon: GestureDetector(
                       onTap: () {
                         eye = !eye;
                         setState(() {});
@@ -133,7 +130,7 @@ class _SignPageState extends ConsumerState<SignPage> {
                 // },
               ),
               SizedBox(
-                height: width * 0.4,
+                height: width * 0.3,
               ),
               InkWell(
                 onTap: () {

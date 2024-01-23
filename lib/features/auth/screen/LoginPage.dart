@@ -46,11 +46,14 @@ class _LogonPaheState extends ConsumerState<LoginPage> {
                 final passwordvisble = ref.watch(passwordprovider);
                 return Column(
                   children: [
-                    Container(
-                      height: 100,
-                      child:Image.asset('aseets/Logo.jpg') ,
+                    SizedBox(
+                      height: scrHeight * 0.05,
                     ),
-                    
+                    Container(
+                      height: scrHeight * 0.25,
+                      child: Image.asset('aseets/Logo.jpg'),
+                    ),
+
                     Text(
                       'Login',
                       style: ArabicTextStyle(
@@ -111,18 +114,18 @@ class _LogonPaheState extends ConsumerState<LoginPage> {
                       //   }
                       // },
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        // SizedBox(width: width*0.09,),
-                        // //const Text('Forgot password',style: TextStyle(fontWeight: FontWeight.bold),),
-                        // SizedBox(width: width*0.35,),
-                        const Text('Forgot password',
-                            style: TextStyle(fontWeight: FontWeight.bold))
-                      ],
-                    ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.end,
+                    //   children: [
+                    //     // SizedBox(width: width*0.09,),
+                    //     // //const Text('Forgot password',style: TextStyle(fontWeight: FontWeight.bold),),
+                    //     // SizedBox(width: width*0.35,),
+                    //     const Text('Forgot password',
+                    //         style: TextStyle(fontWeight: FontWeight.bold))
+                    //   ],
+                    // ),
                     SizedBox(
-                      height: scrHeight * 0.03,
+                      height: scrHeight * 0.07,
                     ),
 
                     InkWell(
@@ -182,14 +185,14 @@ class _LogonPaheState extends ConsumerState<LoginPage> {
                         ),
                       ),
                     ),
-                    GestureDetector(
-                        onTap: () {
-                          ref
-                              .watch(AuthControllerProvider)
-                              .SignwithGoole(context);
-                          // ref.read(AuthControllerProvider).SignwithGoole(context);
-                        },
-                        child: Text('Google Sign'))
+                    // GestureDetector(
+                    //     onTap: () {
+                    //       ref
+                    //           .watch(AuthControllerProvider)
+                    //           .SignwithGoole(context);
+                    //       // ref.read(AuthControllerProvider).SignwithGoole(context);
+                    //     },
+                    //     child: Text('Google Sign'))
                     // Container(
                     //   height: width*0.13,
                     //   width: width*0.9,
