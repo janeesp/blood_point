@@ -2,7 +2,7 @@
     package="com.example.blood_point">
    <application
         android:label="Genius Red Cross Squadt"
-        android:name="${applicationName}"
+        android:name="${applicationName}">
         android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"

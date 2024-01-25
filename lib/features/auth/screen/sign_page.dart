@@ -140,14 +140,20 @@ class _SignPageState extends ConsumerState<SignPage> {
                   final emailexist = await ref
                       .watch(AuthRepositoryProvider)
                       .emailexist(email: email_controler.text.trim());
-                  if (emailexist) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('email alredy exist')));
+                   if (Name.text.trim() == '' ){
+                    showErorMessage(context, 'please enter name');
                   }
-
-                  if (Name.text.trim().isNotEmpty &&
-                      email_controler.text.trim() != "" &&
-                      password_controler.text.trim() != "") {
+                  else if (email_controler.text.trim() == '' ){
+                    showErorMessage(context, 'please enter email');
+                  }
+                  else if (password_controler.text.trim() == '' ){
+                    showErorMessage(context, 'please enter password');
+                  }
+                  else if (emailexist) {
+                       ScaffoldMessenger.of(context).showSnackBar(
+                           SnackBar(content: Text('email alredy exist')));
+                     }
+                  else {
                     ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text("Submited Successfully")));
                     Navigator.push(
@@ -156,12 +162,6 @@ class _SignPageState extends ConsumerState<SignPage> {
                           builder: (context) => const Home(),
                         ));
                     SignData();
-                  } else {
-                    Name.text == ''
-                        ? showErorMessage(context, 'enter name')
-                        : email_controler.text == ""
-                            ? showErorMessage(context, 'enter email')
-                            : showErorMessage(context, 'enter password');
                   }
                 },
                 child: Container(
