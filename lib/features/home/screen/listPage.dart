@@ -112,7 +112,7 @@ class _AllItemsState extends ConsumerState<AllItems> {
                                       Row(
                                         children: [
                                           const Text(
-                                            'Age               :  ',
+                                            'place             :  ',
                                             style: ArabicTextStyle(
                                                 arabicFont: ArabicFont.amiri),
                                           ),

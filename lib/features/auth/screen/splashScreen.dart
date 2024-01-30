@@ -9,49 +9,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../model/userModel.dart';
 import '../../home/screen/home_page.dart';
 import 'LoginPage.dart';
-var currentUserId=FirebaseAuth.instance.currentUser?.uid;
- String currentuserId="";
-Map<String,dynamic>currentUserdata={};
+String currentUserId='';
 
-// class SplashScreen extends ConsumerStatefulWidget {
-//   const SplashScreen({super.key});
-//
-//   @override
-//   ConsumerState createState() => _SplashScreenState();
-// }
-//
-// class _SplashScreenState extends ConsumerState<SplashScreen> {
-//   String? email;
-//   String? password;
-//   Future<void>checkLogin() async {
-//     final SharedPreferences pref = await SharedPreferences.getInstance();
-//     email= pref.getString("email");
-//     password = pref.getString("password");
-//     Future.delayed(Duration(seconds: 3));
-//     if(currentUserId!=null){
-//       Navigator.push(context, MaterialPageRoute(builder: (context) =>Home(),));
-//     }
-//     else{
-//       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginPage(),));
-//     }
-//   }
-//   @override
-//   void initState() {
-//     // TODO: implement initState
-//     Future.delayed(const Duration(seconds: 3)).then((value) => checkLogin());
-//   }
-//   @override
-//   Widget build(BuildContext context) {
-//     return  const Scaffold(
-//       backgroundColor: Colors.red,
-//       body: Center(
-//         child:
-//
-//         CircularProgressIndicator(),
-//       ),
-//     );
-//   }
-// }
+Map<String,dynamic>currentUserdata={};
 
 class Splashscreen extends StatefulWidget {
   const Splashscreen({Key? key}) : super(key: key);
@@ -64,13 +24,10 @@ class _SplashscreenState extends State<Splashscreen> {
 
   Future loginEvent() async {
     final preferences = await SharedPreferences.getInstance();
-    if (currentUserId != null) {
-      preferences.setString('id', currentUserId!);
+    if(preferences.containsKey('id')){
+      currentUserId=preferences.getString('id')??'';
     }
-    else{
-      currentUserId = preferences.getString('id') ?? "";
-    }
-    if(currentUserId == null && currentUserId != ''){
+    if(currentUserId != ''){
       FirebaseFirestore.instance
           .collection("posUser")
           .doc(currentUserId)
@@ -93,7 +50,7 @@ class _SplashscreenState extends State<Splashscreen> {
             context,
             MaterialPageRoute(
                 builder: (context) =>
-                currentUserId != ""
+                currentUserId!=""
                     ? Home()
                     :  LoginPage()
             ),
@@ -106,9 +63,14 @@ class _SplashscreenState extends State<Splashscreen> {
 
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Center(
-        child: CircularProgressIndicator(),
+          child: Container(
+            // height:width*2,
+            //   width: width*1,
+              child: Image(image: AssetImage('aseets/gifffff (1).gif'))),
+
       ),
     );
   }

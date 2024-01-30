@@ -18,12 +18,14 @@ addDetails(DetailsModel detailsModel){
      .then((value) => value.update({"id":value.id}));
 }
 Stream<List<DetailsModel>>getDetails({required String? group}){
-  print(group);
-  print(bloodgroups);
   return
   _firestore.collection(FirebaseConst.firbaseCollection)
          .where('bloodGroup',isEqualTo: group)
       .snapshots()
       .map((event) => event.docs.map((e) => DetailsModel.fromMap(e.data())).toList());
+}
+Stream<DocumentSnapshot>getcustomer(){
+  return _firestore.collection('customer').doc('contact').snapshots();
+
 }
 }

@@ -11,7 +11,7 @@ final getDetailsControllerProvider =StreamProvider.family.autoDispose((ref,Strin
  addReppository(firestore: ref.read(firebaseProvider));
  return _home.getDetails(group: group);
 });
-
+final getcontacts = StreamProvider.autoDispose((ref) => ref.watch(addControllerProvider).getcustomer());
 class addController{
   final addReppository _reppository;
   addController({
@@ -23,5 +23,8 @@ _reppository=reppository;
   }
   Stream<List<DetailsModel>>getDetails(String group){
     return _reppository.getDetails(group: 'group');
+  }
+  Stream getcustomer(){
+    return _reppository.getcustomer();
   }
 }
