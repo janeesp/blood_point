@@ -92,10 +92,10 @@ class _AllItemsState extends ConsumerState<AllItems> {
                                           ),
                                           GestureDetector(
                                    onTap: () {
-                                     void _launchURL() async {
-                                       if (!await launch('tel://${detailItems.number.toString()}')) throw 'Could not launch ';
-                                     }
-                                     _launchURL();
+                                   //   void _launchURL() async {
+                                   //     if (!await launch('tel://${detailItems.number.toString()}')) throw 'Could not launch ';
+                                   //   }
+                                   //   _launchURL();
                                    },
                                             child: Text(
                                               detailItems.number.toString(),

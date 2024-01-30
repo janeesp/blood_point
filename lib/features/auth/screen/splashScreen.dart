@@ -1,9 +1,6 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../model/userModel.dart';
@@ -36,7 +33,6 @@ class _SplashscreenState extends State<Splashscreen> {
         currentUser = UserModel.fromjson(event.data()!);
       });
     }
-    print('UserId : ${currentUserId!}');
     print('UserId : ${currentUser?.email}');
     setState(() {});
   }
@@ -63,7 +59,7 @@ class _SplashscreenState extends State<Splashscreen> {
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
+    // var width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Center(
           child: Container(
