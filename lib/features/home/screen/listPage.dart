@@ -47,7 +47,7 @@ class _AllItemsState extends ConsumerState<AllItems> {
                               padding: const EdgeInsets.only(left: 5, right: 5),
                               child: Container(
                                 // margin: EdgeInsets.only(top: 3,left: 2),
-                                height: width * 0.35,
+                                //  height: width * 0.35,
                                 decoration: BoxDecoration(
                                     color: Color.fromARGB(255, 245, 243, 243),
                                     borderRadius: BorderRadius.circular(10),

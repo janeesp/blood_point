@@ -78,7 +78,7 @@ class AuthRepository {
     } on FirebaseException catch (e) {
       throw e.message!;
     } catch (e) {
-      return left(Failure(e.toString()));
+      return left(Failure('enter a valid email or password'));
     }
   }
 
