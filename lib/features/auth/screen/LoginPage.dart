@@ -1,12 +1,11 @@
 import 'package:arabic_font/arabic_font.dart';
 import 'package:blood_point/features/auth/screen/sign_page.dart';
-
+import 'package:blood_point/features/auth/screen/splashScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';
-
 import '../../../core/global/global.dart';
-import '../../../core/providers/utils.dart';
+import '../../home/screen/home_page.dart';
 import '../authController/authController.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
@@ -35,9 +34,10 @@ class _LogonPaheState extends ConsumerState<LoginPage> {
   });
   @override
   Widget build(BuildContext context) {
-    scrHeight = MediaQuery.of(context).size.height;
-    scrWidth = MediaQuery.of(context).size.width;
+    // var scrHeight = MediaQuery.of(context).size.height;
+    // var scrWidth = MediaQuery.of(context).size.width;
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
             padding: const EdgeInsets.all(10),
@@ -184,65 +184,27 @@ class _LogonPaheState extends ConsumerState<LoginPage> {
                           ],
                         ),
                       ),
+
                     ),
-                    // GestureDetector(
-                    //     onTap: () {
-                    //       ref
-                    //           .watch(AuthControllerProvider)
-                    //           .SignwithGoole(context);
-                    //       // ref.read(AuthControllerProvider).SignwithGoole(context);
-                    //     },
-                    //     child: Text('Google Sign'))
-                    // Container(
-                    //   height: width*0.13,
-                    //   width: width*0.9,
-                    //   decoration: BoxDecoration(
-                    //       color: primaryColor,
-                    //       borderRadius: BorderRadius.circular(15)
-                    //   ),
-                    //   child: InkWell(
-                    //     onTap: () {
-                    //     },
-                    //     child: const Center(child: Text("Sign up",style: TextStyle(
-                    //         fontWeight: FontWeight.bold,fontSize: 20,color: Colors.white),)),
-                    //   ),
-                    // ),
-                    // SizedBox(height: width*0.02,),
-                    // SizedBox(height: width*0.1,),
-                    // const Text('or',style:TextStyle(color: Colors.black38,fontSize: 25),),
-                    // SizedBox(
-                    //   height: width*0.1,
-                    // ),
-                    // Row(
-                    //   children: [
-                    //     SizedBox(width: width*0.04,),
-                    //     Container(
-                    //       height: width*0.14,
-                    //       width: width*0.4,
-                    //       decoration: const BoxDecoration(
-                    //         // image: DecorationImage(image: AssetImage('assets/animation/insta.png')),
-                    //           shape: BoxShape.circle
-                    //
-                    //       ),
-                    //     ),
-                    //     SizedBox(
-                    //       width: width*0.17,
-                    //     ),
-                    //
-                    //     Container(
-                    //       height: width*0.18,
-                    //       width: width*0.15,
-                    //       decoration: const BoxDecoration(
-                    //           shape: BoxShape.circle
-                    //       ),
-                    //
-                    //       // child:
-                    //       // SignInButton()
-                    //     )
-                    //
-                    //
-                    //   ],
-                    // ),
+
+                    GestureDetector(
+                        onTap: () {
+                          ref
+                              .watch(AuthControllerProvider)
+                              .SignwithGoole(context);
+                          // ref.read(AuthControllerProvider).SignwithGoole(context);
+                        },
+                        child: Container(
+                          height: scrHeight*0.05,
+                          width: scrWidth*0.4,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(image: AssetImage('aseets/google.jpg'))
+                          ),
+
+
+
+                        )),
                   ],
                 );
               },
