@@ -2,6 +2,7 @@ import 'package:arabic_font/arabic_font.dart';
 import 'package:blood_point/core/providers/providers.dart';
 import 'package:blood_point/core/providers/utils.dart';
 import 'package:blood_point/features/auth/repository/authrepository.dart';
+import 'package:blood_point/features/auth/screen/splashScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/global/global.dart';
@@ -34,12 +35,12 @@ class _SignPageState extends ConsumerState<SignPage> {
   TextEditingController email_controler = TextEditingController();
   TextEditingController password_controler = TextEditingController();
   bool eye = false;
-
   @override
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
@@ -48,7 +49,7 @@ class _SignPageState extends ConsumerState<SignPage> {
               SizedBox(
                 height: scrHeight * 0.03,
               ),
-              Text(
+              const Text(
                 'Sign Up',
                 style:
                     ArabicTextStyle(arabicFont: ArabicFont.amiri, fontSize: 50),
