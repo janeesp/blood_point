@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.blood_point">
    <application
-        android:label="Genius Red Cross Squadt"
-        android:name="${applicationName}">
+        android:label="Genius Red Cross Squad"
+        android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"

@@ -35,7 +35,8 @@ class _HomeState extends ConsumerState<Home> {
                   child: ListView(
                     children: [
                       DrawerHeader(
-                          decoration: const BoxDecoration(color: Color(0xffeb0216)),
+                          decoration:
+                              const BoxDecoration(color: Color(0xffeb0216)),
                           child: Column(
                             children: [
                               Container(
@@ -75,7 +76,8 @@ class _HomeState extends ConsumerState<Home> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.start,
                                             children: [
-                                              const Text('sabeer        :9496876904'),
+                                              const Text(
+                                                  'sabeer        :9496876904'),
                                               SizedBox(
                                                 height: width * 0.05,
                                               ),
@@ -111,19 +113,56 @@ class _HomeState extends ConsumerState<Home> {
                       //         fontSize: 20),
                       //   ),
                       // ),
-                       ListTile(
+                      ListTile(
                         title: InkWell(
-                          onTap: () async{
-                            Navigator.of(context, rootNavigator: true).pop(false);
-                            final SharedPreferences prfs =
-                                await SharedPreferences.getInstance();
-                            prfs.clear();
-                            Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => LoginPage(),
-                                ),
-                                    (route) => false);
+                          onTap: () async {
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: Text('Log Out'),
+                                  content: Text('Do you want continue'),
+                                  actions: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        ElevatedButton(
+                                          onPressed: () async {
+                                            Navigator.of(context, rootNavigator: true).pop(false);
+                                            final SharedPreferences prfs =
+                                                await SharedPreferences.getInstance();
+                                            prfs.clear();
+                                            Navigator.pushAndRemoveUntil(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) => LoginPage(),
+                                                ),
+                                                    (route) => false);
+                                          },
+                                           // color:Color(0xffeb0216) ,
+                                            style: ElevatedButton.styleFrom(backgroundColor: Color(0xffeb0216),
+                                            ),
+                                            child: Text('Yes')
+                                        ),
+                                        SizedBox(
+                                          width: width * 0.1,
+                                        ),
+
+                                        ElevatedButton(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                            style: ElevatedButton.styleFrom(backgroundColor: Color(0xffeb0216)),
+                                            child: Text('No'))
+                                      ],
+                                    )
+                                  ],
+                                );
+                              },
+                            );
                           },
                           child: const Text(
                             'Log Out',
@@ -138,30 +177,6 @@ class _HomeState extends ConsumerState<Home> {
                   ),
                 ),
                 appBar: AppBar(
-                  // title: const Text(
-                  //   'Hai ',
-                  //   style: ArabicTextStyle(
-                  //       arabicFont: ArabicFont.amiri,
-                  //       fontSize: 20,
-                  //       color: Colors.white),
-                  // ),
-                  // actions: [
-                  //   IconButton(
-                  //       onPressed: () async {
-                  //         Navigator.of(context, rootNavigator: true).pop(false);
-                  //         final SharedPreferences prfs =
-                  //             await SharedPreferences.getInstance();
-                  //         prfs.clear();
-                  //
-                  //         Navigator.pushAndRemoveUntil(
-                  //             context,
-                  //             MaterialPageRoute(
-                  //               builder: (context) => LoginPage(),
-                  //             ),
-                  //             (route) => false);
-                  //       },
-                  //       icon: const Icon(Icons.login_outlined))
-                  // ],
                   bottom: TabBar(
                     tabs: data.groups!
                         .map((e) => Tab(
@@ -209,7 +224,7 @@ class _HomeState extends ConsumerState<Home> {
           error: (error, stackTrace) {
             return Text(error.toString());
           },
-          loading: () => const Center(child: CircularProgressIndicator()),
+          loading: () => const Center(child: SizedBox()),
         );
       },
     );

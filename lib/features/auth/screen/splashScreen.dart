@@ -67,7 +67,7 @@ class _SplashscreenState extends State<Splashscreen> {
       body: Center(
           child: Container(
             height:scrHeight*0.7,
-              width: scrWidth*1,
+              width: scrWidth*0.6,
               child: Image(image: AssetImage('aseets/gifffff (1).gif'))),
 
       ),
