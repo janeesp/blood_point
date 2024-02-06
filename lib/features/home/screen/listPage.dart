@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../model/detailsModel.dart';
+import '../../auth/screen/splashScreen.dart';
 import '../controller/addController.dart';
 import 'home_page.dart';
 
@@ -18,7 +19,6 @@ class AllItems extends ConsumerStatefulWidget {
 class _AllItemsState extends ConsumerState<AllItems> {
   @override
   Widget build(BuildContext context) {
-    width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -42,7 +42,7 @@ class _AllItemsState extends ConsumerState<AllItems> {
                         itemBuilder: (context, index) {
                           DetailsModel detailItems = data[index];
                           return Padding(
-                            padding: EdgeInsets.all(width * 0.03),
+                            padding: EdgeInsets.all(scrWidth * 0.03),
                             child: Padding(
                               padding: const EdgeInsets.only(left: 5, right: 5),
                               child: Container(
@@ -81,7 +81,7 @@ class _AllItemsState extends ConsumerState<AllItems> {
                                         ],
                                       ),
                                       SizedBox(
-                                        height: width * 0.01,
+                                        height: scrHeight * 0.01,
                                       ),
                                       Row(
                                         children: [
@@ -107,7 +107,7 @@ class _AllItemsState extends ConsumerState<AllItems> {
                                         ],
                                       ),
                                       SizedBox(
-                                        height: width * 0.01,
+                                        height: scrHeight * 0.01,
                                       ),
                                       Row(
                                         children: [
@@ -124,7 +124,7 @@ class _AllItemsState extends ConsumerState<AllItems> {
                                         ],
                                       ),
                                       SizedBox(
-                                        height: width * 0.01,
+                                        height: scrHeight * 0.01,
                                       ),
                                       Row(
                                         children: [

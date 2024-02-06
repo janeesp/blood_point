@@ -1,4 +1,5 @@
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
+import 'package:blood_point/features/auth/screen/splashScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/global/global.dart';
@@ -52,7 +53,7 @@ class _AddPageState extends ConsumerState<AddPage> {
                 ),
               ),
               SizedBox(
-                height: width*0.02,
+                height: scrHeight*0.02,
               ),
               TextFormField(
                 controller: number,
@@ -75,7 +76,7 @@ class _AddPageState extends ConsumerState<AddPage> {
                 },
               ),
               SizedBox(
-                height: width*0.02,
+                height: scrHeight*0.02,
               ),
               TextFormField(
                 controller: place,
@@ -86,11 +87,11 @@ class _AddPageState extends ConsumerState<AddPage> {
                     )
                 ),
               ),  SizedBox(
-                height: width*0.02,
+                height: scrHeight*0.02,
               ),
               Container(
-                height: width*0.14,
-                width: width*1,
+                height: scrHeight*0.14,
+                width: scrWidth*1,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
@@ -118,7 +119,7 @@ class _AddPageState extends ConsumerState<AddPage> {
                 ) ,
               ),
               SizedBox(
-                height: width*0.1,
+                height: scrHeight*0.1,
               ),
               InkWell(
                 onTap: () {
@@ -138,8 +139,8 @@ class _AddPageState extends ConsumerState<AddPage> {
 
                 },
                 child: Container(
-                  height: width*0.1,
-                  width: width*0.2,
+                  height: scrHeight*0.1,
+                  width: scrWidth*0.2,
                   decoration: BoxDecoration(
                     color: Colors.red,
                     borderRadius: BorderRadius.circular(10)

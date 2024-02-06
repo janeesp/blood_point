@@ -54,7 +54,7 @@ class _LogonPaheState extends ConsumerState<LoginPage> {
                       child: Image.asset('aseets/Logo.jpg'),
                     ),
 
-                    Text(
+                    const Text(
                       'Login',
                       style: ArabicTextStyle(
                           arabicFont: ArabicFont.amiri, fontSize: 50),
@@ -191,7 +191,7 @@ class _LogonPaheState extends ConsumerState<LoginPage> {
                         onTap: () {
                           ref
                               .watch(AuthControllerProvider)
-                              .SignwithGoole(context);
+                              .signWithGoogle(context);
                           // ref.read(AuthControllerProvider).SignwithGoole(context);
                         },
                         child: Container(

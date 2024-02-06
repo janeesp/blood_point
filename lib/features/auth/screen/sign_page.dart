@@ -5,6 +5,7 @@ import 'package:blood_point/features/auth/repository/authrepository.dart';
 import 'package:blood_point/features/auth/screen/splashScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../core/global/global.dart';
 import '../../../model/userModel.dart';
 import '../../home/screen/home_page.dart';
@@ -21,13 +22,15 @@ class SignPage extends ConsumerStatefulWidget {
 class _SignPageState extends ConsumerState<SignPage> {
   SignData() {
     ref.watch(AuthControllerProvider).Sign(UserModel(
-        delete: false,
-        email: email_controler.text.trim(),
-        password: password_controler.text.trim(),
-        name: Name.text.trim(),
-        id: "",));
+          delete: false,
+          email: email_controler.text.trim(),
+          password: password_controler.text.trim(),
+          name: Name.text.trim(),
+          id: "",
+        ),context);
   }
 
+  late String email;
   RegExp Emailvalidator =
       RegExp(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+$)");
   // RegExp Passwordvalidator=RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[./@!&%$#]).{8,}$');
@@ -104,7 +107,7 @@ class _SignPageState extends ConsumerState<SignPage> {
 
                 obscureText: eye == true ? false : true,
                 decoration: InputDecoration(
-                  border: OutlineInputBorder(
+                  border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10))),
                   focusColor: Colors.black12,
                   hintText: "Password",
@@ -141,29 +144,28 @@ class _SignPageState extends ConsumerState<SignPage> {
                   final emailexist = await ref
                       .watch(AuthRepositoryProvider)
                       .emailexist(email: email_controler.text.trim());
-                   if (Name.text.trim() == '' ){
+                  if (Name.text.trim() == '') {
                     showErorMessage(context, 'please enter name');
-                  }
-                  else if (email_controler.text.trim() == '' ){
+                  } else if (email_controler.text.trim() == '') {
                     showErorMessage(context, 'please enter email');
-                  }
-                  else if (password_controler.text.trim() == '' ){
+                  } else if (password_controler.text.trim() == '') {
                     showErorMessage(context, 'please enter password');
-                  }
-                  else if (emailexist) {
-                       ScaffoldMessenger.of(context).showSnackBar(
-                           SnackBar(content: Text('email alredy exist')));
-                     }
-                  else {
+                  } else if (emailexist) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('email alredy exist')));
+                  } else {
                     ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text("Submited Successfully")));
-                    Navigator.push(
+                    SignData();
+                    Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const Home(),
-                        ));
-                    SignData();
+                          builder: (context) => Home(),
+                        ),
+                        (route) => false);
+
                   }
+
                 },
                 child: Container(
                   height: width * 0.13,

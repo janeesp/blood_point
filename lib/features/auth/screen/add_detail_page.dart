@@ -1,9 +1,11 @@
 import 'package:arabic_font/arabic_font.dart';
+import 'package:blood_point/features/auth/screen/splashScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/global/global.dart';
 import '../../../core/providers/utils.dart';
+import '../../home/screen/home_page.dart';
 
 class Add_detail_Page extends ConsumerStatefulWidget {
   final email;
@@ -39,7 +41,7 @@ class _Add_detail_PageState extends ConsumerState<Add_detail_Page> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Add Detals',
+                            'Add Details',
                             style: ArabicTextStyle(
                                 arabicFont: ArabicFont.amiri, fontSize: 50),
                           ),
@@ -92,19 +94,24 @@ class _Add_detail_PageState extends ConsumerState<Add_detail_Page> {
                     SizedBox(
                       height: scrHeight * 0.3,
                     ),
-                    Container(
-                      height: scrHeight * 0.07,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: const Color(0xffeb0216),
-                      ),
-                      child: const Center(
-                        child: Text(
-                          'Add',
-                          style: ArabicTextStyle(
-                              color: Colors.white,
-                              fontSize: 30,
-                              arabicFont: ArabicFont.amiri),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Home(),));
+                      },
+                      child: Container(
+                        height: scrHeight * 0.07,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: const Color(0xffeb0216),
+                        ),
+                        child: const Center(
+                          child: Text(
+                            'Add',
+                            style: ArabicTextStyle(
+                                color: Colors.white,
+                                fontSize: 30,
+                                arabicFont: ArabicFont.amiri),
+                          ),
                         ),
                       ),
                     )
