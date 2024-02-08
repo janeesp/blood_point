@@ -29,29 +29,37 @@ class AuthRepository {
         _googleSinIn = googleSignIn,
         _firestore = firestore;
 
-  addSignUp(
+  FutureVoid addSignUp(
       UserModel emailAuth,
       ) async {
     UserModel addEmail;
-    _auth.createUserWithEmailAndPassword(
-      email: emailAuth.email!.trim(),
-      password: emailAuth.password!.trim(),
-    )
-        .then((value) async {
-      addEmail = UserModel(
-          delete: false,
-          name: emailAuth.name!.trim(),
-          email: emailAuth.email!.trim(),
-          password: emailAuth.password!.trim(),
-          id: emailAuth.id);
+    try{
+      await _auth.createUserWithEmailAndPassword(
+        email: emailAuth.email!.trim(),
+        password: emailAuth.password!.trim(),
+      )
+          .then((value) async {
+        addEmail = UserModel(
+            delete: false,
+            name: emailAuth.name!.trim(),
+            email: emailAuth.email!.trim(),
+            password: emailAuth.password!.trim(),
+            id: emailAuth.id);
 
-      _firestore
-          .collection(FirebaseConst.Users)
-          .add(addEmail.tojson())
-          .then((value) => value.update({"id": value.id}));
-    });
-    SharedPreferences? pref = await SharedPreferences.getInstance();
-    pref.setString('id', emailAuth.id.toString());
+        _firestore
+            .collection(FirebaseConst.Users)
+            .add(addEmail.tojson())
+            .then((value) => value.update({"id": value.id}));
+      });
+      SharedPreferences? pref = await SharedPreferences.getInstance();
+      pref.setString('id', emailAuth.id.toString());
+      return right("");
+    }on FirebaseException catch (e) {
+      throw e.message!;
+    } catch (e) {
+      return left(Failure('enter a valid email or password'));
+    }
+
   }
 
   FutureEither<UserModel> LoginData(String email, password) async {

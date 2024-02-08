@@ -20,16 +20,22 @@ AuthController({
 }):
     _repository=repository;
 
-Sign(UserModel userModel,BuildContext context) {
-  _repository.addSignUp(userModel);
-// result.fold((l) => showSnackBar(context,l.message),
-//         (r)async{
-//       final SharedPreferences prfs= await SharedPreferences.getInstance();
-//       prfs.setString("emai", );
-//       prfs.setString("password", password);
-//       // Navigator.push(context, MaterialPageRoute(builder:(context) => Home(), ));
-//       Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Home(),), (route) => false);
-//     });
+Sign(UserModel userModel,BuildContext context) async {
+  var result=await _repository.addSignUp(userModel);
+result.fold((l) => showSnackBar(context,l.message),
+        (r)async{
+          ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                  content: Text("Submited Successfully")));
+          Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Home(),
+              ),
+                  (route) => false);
+      // Navigator.push(context, MaterialPageRoute(builder:(context) => Home(), ));
+
+    });
 }
 LoginData(String email , password,BuildContext context)async{
  var result = await _repository.LoginData(email, password);
